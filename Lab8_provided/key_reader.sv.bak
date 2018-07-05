@@ -1,0 +1,63 @@
+module key_reader(
+			input logic [31:0] keycode,
+			output logic w_on, a_on, s_on, d_on,
+			output logic lef_on, rig_on, up_on, dow_on,
+			output logic pl_1shoot, pl_2shoot);	
+			
+			
+//Checking the WASD keys
+assign w_on = (keycode[31:24] == 8'h1A |
+					keycode[23:16] == 8'h1A |
+					keycode[15:8] == 8'h1A |
+					keycode[7:0] == 8'h1A);
+					
+assign a_on = (keycode[31:24] == 8'h04 |
+					keycode[23:16] == 8'h04 |
+					keycode[15:8] == 8'h04 |
+					keycode[7:0] == 8'h04);
+					
+assign s_on = (keycode[31:24] == 8'h16 |
+					keycode[23:16] == 8'h16 |
+					keycode[15:8] == 8'h16 |
+					keycode[7:0] == 8'h16);
+					
+assign d_on = (keycode[31:24] == 8'h07 |
+					keycode[23:16] == 8'h07 |
+					keycode[15:8] == 8'h07 |
+					keycode[7:0] == 8'h07);
+					
+//Checking the Arrow keys
+assign lef_on = (keycode[31:24] == 8'h50 |
+					keycode[23:16] == 8'h50 |
+					keycode[15:8] == 8'h50 |
+					keycode[7:0] == 8'h50);
+					
+assign rig_on = (keycode[31:24] == 8'h4F |
+					keycode[23:16] == 8'h4F |
+					keycode[15:8] == 8'h4F |
+					keycode[7:0] == 8'h4F);
+					
+assign up_on = (keycode[31:24] == 8'h52 |
+					keycode[23:16] == 8'h52 |
+					keycode[15:8] == 8'h52 |
+					keycode[7:0] == 8'h52);
+					
+assign dow_on = (keycode[31:24] == 8'h51 |
+					keycode[23:16] == 8'h51 |
+					keycode[15:8] == 8'h51 |
+					keycode[7:0] == 8'h51);
+					
+//Checking the shooting keys
+//for player two, shoot key is keypad enter
+assign pl_2shoot = (	keycode[31:24] == 8'h58 |
+							keycode[23:16] == 8'h58 |
+							keycode[15:8] == 8'h58 |
+							keycode[7:0] == 8'h58); 
+							
+//for player one, shoot key is spacebar
+assign pl_2shoot = (	keycode[31:24] == 8'h2C |
+							keycode[23:16] == 8'h2C |
+							keycode[15:8] == 8'h2C |
+							keycode[7:0] == 8'h2C); 
+							
+endmodule

@@ -1,0 +1,179 @@
+
+State Machine - |lab8|pickup_gen:items_inst|pickup:comb_3|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst16|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst15|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst14|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst13|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst12|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst11|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst10|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst9|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst8|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst7|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst6|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst5|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst4|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst3|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst2|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|obstacle_gen:rand_obst|obstacle:obst1|State
+Name State.Hit State.Not_Hit State.Hit_1 
+State.Not_Hit 0 0 0 
+State.Hit_1 0 1 1 
+State.Hit 1 1 0 
+
+State Machine - |lab8|bullet:bullet_player2|State
+Name State.Pressed State.Not_Pressed State.Pressed_1 
+State.Not_Pressed 0 0 0 
+State.Pressed_1 0 1 1 
+State.Pressed 1 1 0 
+
+State Machine - |lab8|bullet:bullet_player1|State
+Name State.Pressed State.Not_Pressed State.Pressed_1 
+State.Not_Pressed 0 0 0 
+State.Pressed_1 0 1 1 
+State.Pressed 1 1 0 
+
+State Machine - |lab8|ball:ball_second|Direction
+Name Direction.11 Direction.10 Direction.01 Direction.00 
+Direction.00 0 0 0 0 
+Direction.01 0 0 1 1 
+Direction.10 0 1 0 1 
+Direction.11 1 0 0 1 
+
+State Machine - |lab8|ball:ball_first|Direction
+Name Direction.11 Direction.10 Direction.01 Direction.00 
+Direction.00 0 0 0 0 
+Direction.01 0 0 1 1 
+Direction.10 0 1 0 1 
+Direction.11 1 0 0 1 
+
+State Machine - |lab8|statemachine:stae|State
+Name State.Done State.Game State.Generate State.Start 
+State.Start 0 0 0 0 
+State.Generate 0 0 1 1 
+State.Game 0 1 0 1 
+State.Done 1 0 0 1 
+
+State Machine - |lab8|nios_system:nios_system|nios_system_sdram:sdram|m_next
+Name m_next.010000000 m_next.000010000 m_next.000001000 m_next.000000001 
+m_next.000000001 0 0 0 0 
+m_next.000001000 0 0 1 1 
+m_next.000010000 0 1 0 1 
+m_next.010000000 1 0 0 1 
+
+State Machine - |lab8|nios_system:nios_system|nios_system_sdram:sdram|m_state
+Name m_state.100000000 m_state.010000000 m_state.001000000 m_state.000100000 m_state.000010000 m_state.000001000 m_state.000000100 m_state.000000010 m_state.000000001 
+m_state.000000001 0 0 0 0 0 0 0 0 0 
+m_state.000000010 0 0 0 0 0 0 0 1 1 
+m_state.000000100 0 0 0 0 0 0 1 0 1 
+m_state.000001000 0 0 0 0 0 1 0 0 1 
+m_state.000010000 0 0 0 0 1 0 0 0 1 
+m_state.000100000 0 0 0 1 0 0 0 0 1 
+m_state.001000000 0 0 1 0 0 0 0 0 1 
+m_state.010000000 0 1 0 0 0 0 0 0 1 
+m_state.100000000 1 0 0 0 0 0 0 0 1 
+
+State Machine - |lab8|nios_system:nios_system|nios_system_sdram:sdram|i_next
+Name i_next.111 i_next.101 i_next.010 i_next.000 
+i_next.000 0 0 0 0 
+i_next.010 0 0 1 1 
+i_next.101 0 1 0 1 
+i_next.111 1 0 0 1 
+
+State Machine - |lab8|nios_system:nios_system|nios_system_sdram:sdram|i_state
+Name i_state.111 i_state.101 i_state.011 i_state.010 i_state.001 i_state.000 
+i_state.000 0 0 0 0 0 0 
+i_state.001 0 0 0 0 1 1 
+i_state.010 0 0 0 1 0 1 
+i_state.011 0 0 1 0 0 1 
+i_state.101 0 1 0 0 0 1 
+i_state.111 1 0 0 0 0 1 
+
+State Machine - |lab8|nios_system:nios_system|nios_system_nios2_gen2_0:nios2_gen2_0|nios_system_nios2_gen2_0_cpu:cpu|nios_system_nios2_gen2_0_cpu_nios2_oci:the_nios_system_nios2_gen2_0_cpu_nios2_oci|nios_system_nios2_gen2_0_cpu_debug_slave_wrapper:the_nios_system_nios2_gen2_0_cpu_debug_slave_wrapper|nios_system_nios2_gen2_0_cpu_debug_slave_tck:the_nios_system_nios2_gen2_0_cpu_debug_slave_tck|DRsize
+Name DRsize.101 DRsize.100 DRsize.011 DRsize.010 DRsize.001 DRsize.000 
+DRsize.000 0 0 0 0 0 0 
+DRsize.001 0 0 0 0 1 1 
+DRsize.010 0 0 0 1 0 1 
+DRsize.011 0 0 1 0 0 1 
+DRsize.100 0 1 0 0 0 1 
+DRsize.101 1 0 0 0 0 1 

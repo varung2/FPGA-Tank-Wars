@@ -1,0 +1,37 @@
+module obstacle( input 		Clk, 
+									Reset,
+									frame_clk,
+									input [9:0] DrawX, DrawY,
+						
+
+
+					 );
+
+endmodule 
+
+/*
+module  ball ( input         Clk,                // 50 MHz clock
+                             Reset,              // Active-high reset signal
+                             frame_clk,          // The clock indicating a new frame (~60Hz)
+               input [9:0]   DrawX, DrawY,		 // Current pixel coordinates
+					input w_on, a_on, s_on, d_on,
+               output logic  is_ball,             // Whether current pixel belongs to sprite or background
+					output logic [1:0] dir,
+					output logic [9:0] spriteX, //xposition of sprite
+					output logic [9:0] spriteY //yposition of sprite
+              );
+    
+	 //parameter [1:0] Default_Dir = 2'd0; //sets the default direction: 0 = up, 1 = right, 2 = down, 3 = left.
+    parameter [9:0] Ball_X_Center = 10'd320;  // Center position on the X axis
+    parameter [9:0] Ball_Y_Center = 10'd240;  // Center position on the Y axis
+    parameter [9:0] Ball_X_Min = 10'd0;       // Leftmost point on the X axis
+    parameter [9:0] Ball_X_Max = 10'd639;     // Rightmost point on the X axis
+    parameter [9:0] Ball_Y_Min = 10'd0;       // Topmost point on the Y axis
+    parameter [9:0] Ball_Y_Max = 10'd479;     // Bottommost point on the Y axis
+    parameter [9:0] Ball_X_Step = 10'd1;      // Step size on the X axis
+    parameter [9:0] Ball_Y_Step = 10'd1;      // Step size on the Y axis
+    parameter [9:0] Ball_Size = 10'd4;        // Ball size
+    
+    logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion;
+    logic [9:0] Ball_X_Pos_in, Ball_X_Motion_in, Ball_Y_Pos_in, Ball_Y_Motion_in;
+	 logic [1:0] Direction_in, Direction; */

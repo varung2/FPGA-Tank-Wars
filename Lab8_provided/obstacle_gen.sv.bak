@@ -1,0 +1,119 @@
+module obstacle_gen(
+		input Clk, Reset_h,
+		input logic Gen,
+		output logic Gen_Done2,
+
+		input [9:0] Tank1X, Tank1Y, Tank2X, Tank2Y,
+		input [9:0] p1_BullX, p1_BullY, p2_BullX, p2_BullY,
+
+		output logic is_obst,
+		output logic is_obst_2,
+
+		output logic hitobj1, hitobj2,
+
+		input [9:0] DrawX, DrawY,
+		output [20:0] obst
+		);
+	
+	parameter [9:0] number_obstacles = 4;
+	parameter [20:0] defaultsig = 21'd0;
+
+	logic [9:0] objcounter, obj_in;
+	logic [9:0] randx, randy;
+
+	logic [6:0] tl_obj_x[number_obstacles];
+	logic [6:0] tl_obj_y[number_obstacles];
+
+	logic [6:0] tlx_in, tly_in;
+
+	random #(.seed(10'd923)) genx(.*, .out(randx));
+	random #(.seed(10'd323)) geny(.*, .out(randy));
+
+	always_ff @(posedge Clk) begin : Counter
+		if (Reset_h) begin
+			objcounter <= 0;
+			for (int i = 0; i < number_obstacles; i++) begin
+				tl_obj_x[i] <= 0;
+				tl_obj_y[i] <= 0;
+			end
+		end
+		else begin
+			objcounter <= obj_in
+			tl_obj_x[objcounter] <= tlx_in;
+			tl_obj_y[objcounter] <= tly_in;
+		end
+	end
+	always_comb begin : logic
+		if (randx < 9'd80 && randy < 9'd60 && objcounter <= number_obstacles) begin
+			tlx_in = randx[6:0];
+			tly_in = randy[6:0];
+			obj_in = objcounter + 1;
+		end
+		else begin
+			obj_in = objcounter;
+			tlx_in = tl_obj_x[objcounter];
+			tly_in = tl_obj_y[objcounter];
+		end
+	
+	end
+
+
+
+
+
+	//all the output logic in arrays
+	logic donecount[number_obstacles];
+	logic [20:0] obst_out[number_obstacles];
+	logic hitobj1_out[number_obstacles];
+	logic hitobj2_out[number_obstacles];
+	logic is_obst_out[number_obstacles];
+	logic is_obst_2_out[number_obstacles];
+
+	//All of these signals work
+	assign hitobj1 = (hitobj1_out[0] || hitobj1_out[1] || hitobj1_out[2] || hitobj1_out[3]);  //||
+	assign hitobj2 = (hitobj2_out[0] || hitobj2_out[1] || hitobj2_out[2] || hitobj2_out[3]);
+	assign is_obst = (is_obst_out[0] || is_obst_out[1] || is_obst_out[2] || is_obst_out[3]);
+	assign is_obst_2 = (is_obst_2_out[0] || is_obst_2_out[1] || is_obst_2_out[2] || is_obst_2_out[3]);
+	assign Gen_Done2 = (donecount[3] && donecount[2] && donecount[1] && donecount[0]);
+
+	//MUX for obstacle signal and position -- Works
+	always_comb begin : proc_
+		if(obst_out[0][20] == 1'b1)
+			obst[20:0] = obst_out[0][20:0];
+		else if (obst_out[1][20] == 1'b1)
+			obst[20:0] = obst_out[1][20:0];
+		else if (obst_out[2][20] == 1'b1)
+			obst[20:0] = obst_out[2][20:0];
+		else if (obst_out[3][20] == 1'b1)
+			obst[20:0] = obst_out[3][20:0];
+		else
+			obst = defaultsig;
+	end
+
+
+
+
+
+
+	obstacle obst1(.*, .x_init(tl_obj_x[0]), .y_init(tl_obj_y[0]), .is_obst(is_obst_out[0]), .is_obst_2(is_obst_2_out[0]), .hitobj1(hitobj1_out[0]), .hitobj2(hitobj2_out[0]), .obst(obst_out[0]), .done_out(donecount[0]));
+	obstacle obst2(.*, .x_init(tl_obj_x[1]), .y_init(tl_obj_y[1]), .is_obst(is_obst_out[1]), .is_obst_2(is_obst_2_out[1]), .hitobj1(hitobj1_out[1]), .hitobj2(hitobj2_out[1]), .obst(obst_out[1]), .done_out(donecount[1]));
+	obstacle obst3(.*, .x_init(tl_obj_x[2]), .y_init(tl_obj_y[2]), .is_obst(is_obst_out[2]), .is_obst_2(is_obst_2_out[2]), .hitobj1(hitobj1_out[2]), .hitobj2(hitobj2_out[2]), .obst(obst_out[2]), .done_out(donecount[2]));
+	obstacle obst4(.*, .x_init(tl_obj_x[3]), .y_init(tl_obj_y[3]), .is_obst(is_obst_out[3]), .is_obst_2(is_obst_2_out[3]), .hitobj1(hitobj1_out[3]), .hitobj2(hitobj2_out[3]), .obst(obst_out[3]), .done_out(donecount[3]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst5(.*, .is_obst(is_obst_out[4]), .is_obst_2(is_obst_2_out[4]), .hitobj1(hitobj1_out[4]), .hitobj2(hitobj2_out[4]), .obst(obst_out[4]), .done_out(donecount[4]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst6(.*, .is_obst(is_obst_out[5]), .is_obst_2(is_obst_2_out[5]), .hitobj1(hitobj1_out[5]), .hitobj2(hitobj2_out[5]), .obst(obst_out[5]), .done_out(donecount[5]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst7(.*, .is_obst(is_obst_out[6]), .is_obst_2(is_obst_2_out[6]), .hitobj1(hitobj1_out[6]), .hitobj2(hitobj2_out[6]), .obst(obst_out[6]), .done_out(donecount[6]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst8(.*, .is_obst(is_obst_out[7]), .is_obst_2(is_obst_2_out[7]), .hitobj1(hitobj1_out[7]), .hitobj2(hitobj2_out[7]), .obst(obst_out[7]), .done_out(donecount[7]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst9(.*, .is_obst(is_obst_out[8]), .is_obst_2(is_obst_2_out[8]), .hitobj1(hitobj1_out[8]), .hitobj2(hitobj2_out[8]), .obst(obst_out[8]), .done_out(donecount[8]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst10(.*, .is_obst(is_obst_out[9]), .is_obst_2(is_obst_2_out[9]), .hitobj1(hitobj1_out[9]), .hitobj2(hitobj2_out[9]), .obst(obst_out[9]), .done_out(donecount[9]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst11(.*, .is_obst(is_obst_out[10]), .is_obst_2(is_obst_2_out[10]), .hitobj1(hitobj1_out[10]), .hitobj2(hitobj2_out[10]), .obst(obst_out[10]), .done_out(donecount[10]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst12(.*, .is_obst(is_obst_out[11]), .is_obst_2(is_obst_2_out[11]), .hitobj1(hitobj1_out[11]), .hitobj2(hitobj2_out[11]), .obst(obst_out[11]), .done_out(donecount[11]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst13(.*, .is_obst(is_obst_out[12]), .is_obst_2(is_obst_2_out[12]), .hitobj1(hitobj1_out[12]), .hitobj2(hitobj2_out[12]), .obst(obst_out[12]), .done_out(donecount[12]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst14(.*, .is_obst(is_obst_out[13]), .is_obst_2(is_obst_2_out[13]), .hitobj1(hitobj1_out[13]), .hitobj2(hitobj2_out[13]), .obst(obst_out[13]), .done_out(donecount[13]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst15(.*, .is_obst(is_obst_out[14]), .is_obst_2(is_obst_2_out[14]), .hitobj1(hitobj1_out[14]), .hitobj2(hitobj2_out[14]), .obst(obst_out[14]), .done_out(donecount[14));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst16(.*, .is_obst(is_obst_out[15]), .is_obst_2(is_obst_2_out[15]), .hitobj1(hitobj1_out[15]), .hitobj2(hitobj2_out[15]), .obst(obst_out[15]), .done_out(donecount[15]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst17(.*, .is_obst(is_obst_out[16]), .is_obst_2(is_obst_2_out[16]), .hitobj1(hitobj1_out[16]), .hitobj2(hitobj2_out[16]), .obst(obst_out[16]), .done_out(donecount[16]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst18(.*, .is_obst(is_obst_out[17]), .is_obst_2(is_obst_2_out[17]), .hitobj1(hitobj1_out[17]), .hitobj2(hitobj2_out[17]), .obst(obst_out[17]), .done_out(donecount[17]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst19(.*, .is_obst(is_obst_out[18]), .is_obst_2(is_obst_2_out[18]), .hitobj1(hitobj1_out[18]), .hitobj2(hitobj2_out[18]), .obst(obst_out[18]), .done_out(donecount[18]));
+	// obstacle #(.seedx(10'd), .seedy(10'd)) obst20(.*, .is_obst(is_obst_out[19]), .is_obst_2(is_obst_2_out[19]), .hitobj1(hitobj1_out[19]), .hitobj2(hitobj2_out[19]), .obst(obst_out[19]), .done_out(donecount[19]));
+
+endmodule // obstacle_gen

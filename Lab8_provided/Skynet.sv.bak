@@ -1,0 +1,59 @@
+module Skynet(
+						input logic Clk,
+						input logic [9:0] tankX, tankY,
+						input logic [9:0] playerX, playerY,
+						output logic [1:0] motion, //0 = U, 1 = R, 2 = D, 3 = L
+						output logic shoot
+					  );
+
+	parameter [9:0] Ball_X_Min = 10'd0;       // Leftmost point on the X axis
+    parameter [9:0] Ball_X_Max = 10'd639;     // Rightmost point on the X axis
+    parameter [9:0] Ball_Y_Min = 10'd0;       // Topmost point on the Y axis
+    parameter [9:0] Ball_Y_Max = 10'd429;     // Bottommost point on the Y axis
+	
+	//store previous direction and fire state in a register
+	logic [1:0] dir_in;
+	logic shoot_in
+
+	assign motion = cur_motion;
+	assign shoot = cur_shoot;
+
+	always_ff @ (posedge Clk) begin
+		cur_motion <= motion_in;
+		cur_shoot <= shoot_in;
+	end
+
+	always_comb begin
+		//Default cases
+		motion_in = motion; //keep motion unchanged
+		shoot = 1'd0; //keep shoot at 0
+
+		//Shoot mechanism
+		if ((tankX + 12 <= playerX && tankX - 12 >= playerX) || (tankY + 12 <= playerY && tankY - 12 >= playerY)) 
+			shoot_in = 1'd1;
+
+
+		//Wall avoidance mechanism
+		//@TODO add obstacles!!
+		if (motion == 0 && tankY >= Ball_Y_Max - 15) 
+			motion_in = 1'd1;
+		else if (motion == 1 && tankX > Ball_X_Max - 15) 
+			motion_in = 1'd2;
+		else if (motion == 2 && tankY >= Ball_Y_Min + 15) 
+			motion_in = 1'd3;
+		else if (motion == 3 && tankX > Ball_X_Min + 15) 
+			motion_in = 1'd0;
+		else begin 
+			//Follow the player
+			if (tankX >= playerX)
+				motion_in = 1'd3; //move left
+			else if (tankX < playerX)
+				motion_in = 1'd1; //move right
+			else if (tankY >= playerY)
+				motion_in = 1'd0; //move up
+			else if (tankY < playerY)
+				motion_in = 1'd2; //move down
+		end // else
+	end // always_comb
+	
+endmodule // Skynet

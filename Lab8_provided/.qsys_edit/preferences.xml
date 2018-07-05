@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <systemtable filter="All Interfaces">
+  <columns>
+   <connections preferredWidth="223" />
+   <irq preferredWidth="34" />
+   <inputclock preferredWidth="194" />
+   <name preferredWidth="251" />
+  </columns>
+ </systemtable>
+ <library
+   expandedCategories="Library/University Program/Audio &amp; Video/Video,Library/Interface Protocols/PCI Express,Library/Interface Protocols/Interlaken,Library/Processors and Peripherals/Hard Processor Systems,Library/Interface Protocols/Ethernet/Reference Design Components,Library/Basic Functions/Bridges and Adaptors,Library/Interface Protocols/Ethernet,Library/Basic Functions/Bridges and Adaptors/Clock,Library/DSP/Video and Image Processing,Library/Qsys Interconnect/Interrupt,Library/Interface Protocols,Library,Library/Basic Functions/On Chip Memory,Library/Basic Functions/Clocks; PLLs and Resets,Library/Processors and Peripherals,Library/University Program,Library/Processors and Peripherals/Embedded Processors,Library/Interface Protocols/Audio &amp; Video,Library/DSP,Library/University Program/Clock,Library/University Program/Audio &amp; Video,Library/Basic Functions/Bridges and Adaptors/Memory Mapped,Library/Basic Functions/Simulation; Debug and Verification,Library/Qsys Interconnect,Library/Basic Functions/Simulation; Debug and Verification/Simulation,Library/Basic Functions" />
+ <window width="2209" height="1256" x="59" y="4" />
+</preferences>
